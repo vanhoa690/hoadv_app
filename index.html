@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shake!!!</title>
+    <title>Hoadv App Shake!!!</title>
     <link rel="stylesheet" href="./style.css"></link>
 </head>
 <body>
@@ -14,13 +14,13 @@
         </div>
     </div>
 
-    <script src="./index.js"></script>
+    <script src="./shake.js"></script>
     <script type="text/javascript">
         window.onload = function() {
-            var color = ['greenyellow', 'goldenrod', 'yellow', 'red', 'rebeccapurple', 'pink', 'white'];
-            var i = 0;
+            const colorList = ['greenyellow', 'goldenrod', 'yellow', 'red', 'rebeccapurple', 'pink', 'white'];
+            let i = 0;
             document.getElementById('value').innerHTML = i;
-            var myShakeEvent = new Shake({
+            const myShakeEvent = new Shake({
                 threshold: 10
             });
             
@@ -31,7 +31,7 @@
             function shakeEventDidOccur () {
                 i += 1;
                 document.getElementById('value').innerHTML = i;
-                document.getElementById('box').setAttribute("style", "background-color: "+color[i%7]+";");
+                document.getElementById('box').setAttribute("style", "background-color: "+colorList[i%7]+";");
             }
             
             function stopShake(){
