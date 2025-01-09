@@ -8,38 +8,52 @@
     <link rel="stylesheet" href="./style.css"></link>
 </head>
 <body>
-    <div class="box">
-        <div class="center-child" id="box">
-            <p id="value"></p>
-        </div>
-    </div>
-
+    <h1>Lắc Lì Xì</h1>
+    <p>Hãy lắc điện thoại để nhận lì xì!</p>
+    <div id="lixi">🎉</div>
+    <button class="button" onclick="resetLixi()">Làm mới</button>
     <script src="./shake.js"></script>
     <script type="text/javascript">
-        window.onload = function() {
-            const colorList = ['greenyellow', 'goldenrod', 'yellow', 'red', 'rebeccapurple', 'pink', 'white'];
-            let i = 0;
-            document.getElementById('value').innerHTML = i;
-            const myShakeEvent = new Shake({
-                threshold: 10
-            });
-            
-            myShakeEvent.start();
-            
-            window.addEventListener('shake', shakeEventDidOccur, false);
-            
-            function shakeEventDidOccur () {
-                i += 1;
-                document.getElementById('value').innerHTML = i;
-                document.getElementById('box').setAttribute("style", "background-color: "+colorList[i%7]+";");
-            }
-            
-            function stopShake(){
-                shakeEvent.stop();
-            }
+        const lixiList = [
+                "Bạn nhận được 50,000 VNĐ! 🎁",
+                "Chúc mừng! Bạn nhận được 100,000 VNĐ! 🎉",
+                "Wow! Bạn nhận được 200,000 VNĐ! 🧧",
+                "Bạn nhận được 500,000 VNĐ! 🤑",
+                "Chúc mừng năm mới! Bạn nhận được 1,000,000 VNĐ! 🥳",
+                "Hôm nay bạn hơi đen, thử lại lần sau nhé! 😅"
+            ];
 
-            if(!("ondevicemotion" in window)){alert("Not Supported");}
-        };
-        </script>
+        // Chọn phần tử để hiển thị kết quả
+        const lixiDiv = document.getElementById("lixi");
+
+        // Hàm để hiển thị lì xì ngẫu nhiên
+        function showLixi() {
+            const randomIndex = Math.floor(Math.random() * lixiList.length);
+            lixiDiv.textContent = lixiList[randomIndex];
+        }
+
+        // Hàm reset lì xì
+        function resetLixi() {
+            lixiDiv.textContent = "🎉";
+        }
+
+        // Khởi tạo Shake.js
+        const shakeEvent = new Shake({
+            threshold: 15, // Độ nhạy của lắc
+            timeout: 1000  // Thời gian giữa các lần lắc
+        });
+
+        // Bắt sự kiện lắc
+        shakeEvent.start();
+
+        window.addEventListener('shake', function() {
+            showLixi();
+        }, false);
+
+        // Đảm bảo dừng lắng nghe khi không cần thiết
+        window.addEventListener('beforeunload', function() {
+            shakeEvent.stop();
+        });
+    </script>
 </body>
 </html>

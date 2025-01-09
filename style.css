@@ -1,19 +1,25 @@
-.box {
-  /* position: relative; */
-  margin-top: 25%;
-}
-
-.center-child {
-  background-color: greenyellow;
-  border: 1px solid gainsboro;
-  width: 200px;
-  /* height: 100px; */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -100px 0 0 -100px;
-  font-size: 50px;
+body {
+  font-family: Arial, sans-serif;
   text-align: center;
-  display: block;
-  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  background-color: #f7eacb;
+}
+h1 {
+  color: #e63946;
+  margin-top: 50px;
+}
+#lixi {
+  font-size: 24px;
+  margin-top: 20px;
+  color: #1d3557;
+}
+.button {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #457b9d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
