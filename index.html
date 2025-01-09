@@ -19,28 +19,36 @@
     <button class="button" onclick="resetLixi()">Làm mới</button>
     <script src="./shake.js"></script>
     <script type="text/javascript">
-        const lixiList = [
-                "Bạn nhận được 50,000 VNĐ! 🎁",
-                "Chúc mừng! Bạn nhận được 100,000 VNĐ! 🎉",
-                "Wow! Bạn nhận được 200,000 VNĐ! 🧧",
-                "Bạn nhận được 500,000 VNĐ! 🤑",
-                "Chúc mừng năm mới! Bạn nhận được 1,000,000 VNĐ! 🥳",
-                "Hôm nay bạn hơi đen, thử lại lần sau nhé! 😅"
-            ];
+      const lixiList = [
+            "Bạn nhận được 50,000 VNĐ! 🎁",
+            "Chúc mừng! Bạn nhận được 100,000 VNĐ! 🎉",
+            "Wow! Bạn nhận được 200,000 VNĐ! 🧧",
+            "Bạn nhận được 500,000 VNĐ! 🤑",
+            "Chúc mừng năm mới! Bạn nhận được 1,000,000 VNĐ! 🥳",
+            "Hôm nay bạn hơi đen, thử lại lần sau nhé! 😅"
+        ];
 
-        // Chọn phần tử để hiển thị kết quả
-        const lixiDiv = document.getElementById("lixi");
+        // Phần tử DOM
+        const lixiImage = document.getElementById("lixiImage");
+        const lixiResult = document.getElementById("lixiResult");
 
-        // Hàm để hiển thị lì xì ngẫu nhiên
+        // Hàm hiển thị lì xì ngẫu nhiên
         function showLixi() {
             const randomIndex = Math.floor(Math.random() * lixiList.length);
-            lixiDiv.textContent = lixiList[randomIndex];
+            lixiResult.textContent = lixiList[randomIndex];
+
+            // Thêm hiệu ứng rung
+            lixiImage.classList.add("shake");
+            setTimeout(() => lixiImage.classList.remove("shake"), 1000);
         }
 
         // Hàm reset lì xì
         function resetLixi() {
-            lixiDiv.textContent = "🎉";
+            lixiResult.textContent = "🎉";
         }
+
+        // Thêm sự kiện click vào bao lì xì
+        lixiImage.addEventListener("click", showLixi);
 
         // Khởi tạo Shake.js
         const shakeEvent = new Shake({
@@ -48,15 +56,15 @@
             timeout: 1000  // Thời gian giữa các lần lắc
         });
 
-        // Bắt sự kiện lắc
+        // Lắng nghe sự kiện lắc
         shakeEvent.start();
 
-        window.addEventListener('shake', function() {
+        window.addEventListener("shake", function () {
             showLixi();
         }, false);
 
         // Đảm bảo dừng lắng nghe khi không cần thiết
-        window.addEventListener('beforeunload', function() {
+        window.addEventListener("beforeunload", function () {
             shakeEvent.stop();
         });
     </script>
