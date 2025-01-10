@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
     <title>Hoadv App Shake!!!</title>
     <link rel="stylesheet" href="./style.css"></link>
 </head>
 <body>
     <h1>Lắc Lì Xì</h1>
+    <h2 id="maxPlay"></h2>
     <p>Hãy lắc điện thoại hoặc nhấn vào bao lì xì để nhận lì xì!</p>
 
     <div class="container">
@@ -16,7 +18,10 @@
         <div id="notification"></div>
     </div>
 
-    <button class="button" onclick="resetLixi()">Làm mới</button>
+    <button class="button" onClick="resetLixi()">Làm mới</button>
+    <div>
+        <img class="logo"  src="/images/logo.png" alt="Logo">
+    </div>
     <script src="./shake.js"></script>
     <script src="./index.js">
     </script>

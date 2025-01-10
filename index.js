@@ -3,10 +3,10 @@ const lixiList = [
   {
     value: 20,
     text: "Chúc mừng! Bạn nhận được 20,000 VNĐ! 🎉",
-    percentage: 10,
+    percentage: 5,
   },
-  { value: 50, text: "Wow! Bạn nhận được 50,000 VNĐ! 🧧", percentage: 8 },
-  { value: 100, text: "Bạn nhận được 100,000 VNĐ! 🤑", percentage: 2 },
+  { value: 50, text: "Wow! Bạn nhận được 50,000 VNĐ! 🧧", percentage: 1 },
+  { value: 100, text: "Bạn nhận được 100,000 VNĐ! 🤑", percentage: 0 },
   {
     value: 200,
     text: "Chúc mừng năm mới! Bạn nhận được 200,000 VNĐ! 🥳",
@@ -15,9 +15,11 @@ const lixiList = [
   {
     value: 0,
     text: "Chúc mừng năm mới, thử lại lần sau nhé! 😅",
-    percentage: 50,
+    percentage: 64,
   },
 ];
+
+let maxPlay = 3;
 
 // Hàm xáo trộn mảng sử dụng thuật toán Fisher-Yates Shuffle
 function shuffleArray(array) {
@@ -54,14 +56,28 @@ function getRandomLixi() {
 }
 
 // Phần tử DOM
+const showMaxPlay = document.getElementById("maxPlay");
 const lixiImage = document.getElementById("lixiImage");
 const notification = document.getElementById("notification");
 
+showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi`;
+
 // Hàm hiển thị lì xì ngẫu nhiên
 function showLixi() {
+  const money = localStorage.getItem("lixi") || 0;
+  if (maxPlay <= 0) {
+    showMaxPlay.textContent = `Bạn đã hết lượt chơi và trúng được ${money}k VND`;
+    alert(`Bạn đã hết lượt chơi và trúng được ${money}k VND `);
+    return;
+  } else {
+    maxPlay = maxPlay - 1;
+    showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi`;
+  }
   const lixi = getRandomLixi();
   console.log(lixi);
 
+  const totalLixi = Number(money) + lixi.value;
+  localStorage.setItem("lixi", totalLixi);
   // Hiển thị thông báo
   notification.textContent = `🎉 ${lixi.message}`;
   notification.classList.add("show");
@@ -77,7 +93,9 @@ function showLixi() {
 
 // Hàm reset lì xì
 function resetLixi() {
-  notification.classList.remove("show");
+  localStorage.setItem("lixi", 0);
+  maxPlay = 3;
+  showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi`;
 }
 
 // Thêm sự kiện click vào bao lì xì
