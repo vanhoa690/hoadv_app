@@ -1,0 +1,176 @@
+{
+  "products": [
+    {
+      "userId": "1",
+      "lixi": "Hôm nay bạn hơi đen, thử lại lần sau nhé! 😅",
+      "id": 1
+    },
+    {
+      "userId": "1",
+      "lixi": "Chúc mừng! Bạn nhận được 100,000 VNĐ! 🎉",
+      "id": 2
+    },
+    {
+      "userId": "1",
+      "lixi": "Bạn nhận được 500,000 VNĐ! 🤑",
+      "id": 3
+    },
+    {
+      "userId": "1",
+      "lixi": "Chúc mừng năm mới! Bạn nhận được 1,000,000 VNĐ! 🥳",
+      "id": 4
+    },
+    {
+      "userId": "1",
+      "lixi": "Bạn nhận được 50,000 VNĐ! 🎁",
+      "id": 5
+    },
+    {
+      "userId": "1",
+      "lixi": "Bạn nhận được 50,000 VNĐ! 🎁",
+      "id": 6
+    },
+    {
+      "userId": "2",
+      "lixi": "Wow! Bạn nhận được 200,000 VNĐ! 🧧",
+      "id": 7
+    },
+    {
+      "userId": "2",
+      "lixi": "Bạn nhận được 50,000 VNĐ! 🎁",
+      "id": 8
+    },
+    {
+      "userId": "2",
+      "lixi": "Bạn nhận được 50,000 VNĐ! 🎁",
+      "id": 9
+    },
+    {
+      "userId": "2",
+      "lixi": "Bạn nhận được 500,000 VNĐ! 🤑",
+      "id": 10
+    },
+    {
+      "userId": "2",
+      "lixi": "Hôm nay bạn hơi đen, thử lại lần sau nhé! 😅",
+      "id": 11
+    },
+    {
+      "userId": "2",
+      "lixi": "Chúc mừng năm mới! Bạn nhận được 1,000,000 VNĐ! 🥳",
+      "id": 12
+    },
+    {
+      "userId": "2",
+      "lixi": "Chúc mừng! Bạn nhận được 100,000 VNĐ! 🎉",
+      "id": 13
+    },
+    {
+      "userId": "2",
+      "lixi": "Wow! Bạn nhận được 200,000 VNĐ! 🧧",
+      "id": 14
+    },
+    {
+      "userId": "2",
+      "lixi": "Bạn nhận được 50,000 VNĐ! 🎁",
+      "id": 15
+    },
+    {
+      "userId": "2",
+      "lixi": "Hôm nay bạn hơi đen, thử lại lần sau nhé! 😅",
+      "id": 16
+    },
+    {
+      "userId": "2",
+      "lixi": "Chúc mừng! Bạn nhận được 100,000 VNĐ! 🎉",
+      "id": 17
+    },
+    {
+      "userId": "2",
+      "lixi": "Hôm nay bạn hơi đen, thử lại lần sau nhé! 😅",
+      "id": 18
+    },
+    {
+      "userId": "2",
+      "lixi": "Bạn nhận được 50,000 VNĐ! 🎁",
+      "id": 19
+    },
+    {
+      "userId": "2",
+      "lixi": "Wow! Bạn nhận được 200,000 VNĐ! 🧧",
+      "id": 20
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_50",
+      "id": 21
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_10",
+      "id": 22
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_0",
+      "id": 23
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_20",
+      "id": 24
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_10",
+      "id": 25
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_50",
+      "id": 26
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_0",
+      "id": 27
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_50",
+      "id": 28
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_20",
+      "id": 29
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_50",
+      "id": 30
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_50",
+      "id": 31
+    },
+    {
+      "userId": "2",
+      "lixi": "lixi_10",
+      "id": 32
+    }
+  ],
+  "users": [
+    {
+      "email": "elitetechness@gmail.com",
+      "password": "$2a$10$X.2C.TpoYGvgFt6TPXw9sOC3kCPEc.XyVAEZ2sTPBRrxAE7L9Vom6",
+      "id": 1
+    },
+    {
+      "email": "vanhoa690@gmail.com",
+      "password": "$2a$10$NVqV43u2q0wdzNNEiyPyD.6aWhjEwPoZIOFr5S6GGhqwOzwhKMNAe",
+      "id": 2
+    }
+  ]
+}
