@@ -19,7 +19,7 @@ const lixiList = [
   },
 ];
 
-let maxPlay = 3;
+let maxPlay = 0;
 
 // Hàm xáo trộn mảng sử dụng thuật toán Fisher-Yates Shuffle
 function shuffleArray(array) {
@@ -57,6 +57,7 @@ function getRandomLixi() {
 
 // Phần tử DOM
 const showMaxPlay = document.getElementById("maxPlay");
+const showMoney = document.getElementById("money");
 const lixiImage = document.getElementById("lixiImage");
 const notification = document.getElementById("notification");
 
@@ -66,17 +67,17 @@ showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi`;
 function showLixi() {
   const money = localStorage.getItem("lixi") || 0;
   if (maxPlay <= 0) {
-    showMaxPlay.textContent = `Bạn đã hết lượt chơi và trúng được ${money}k VND`;
-    alert(`Bạn đã hết lượt chơi và trúng được ${money}k VND `);
+    showMaxPlay.textContent = `Bạn nhận được ${money}k VND`;
+    alert("Bạn đã hết lượt chơi");
     return;
   } else {
     maxPlay = maxPlay - 1;
-    showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi`;
+    showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi và nhận được ${money}k VND`;
   }
   const lixi = getRandomLixi();
-  console.log(lixi);
 
   const totalLixi = Number(money) + lixi.value;
+  showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi và nhận được ${totalLixi}k VND`;
   localStorage.setItem("lixi", totalLixi);
   // Hiển thị thông báo
   notification.textContent = `🎉 ${lixi.message}`;
