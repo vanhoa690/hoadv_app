@@ -1,13 +1,17 @@
 const token = sessionStorage.getItem("token");
 const API_URL = "https://api.webopsagency.com";
-
+function formatCurrency(amount) {
+  return amount.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+}
 if (!token) {
   location.replace("/login.html");
 } else {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  let maxPlay = 3;
+  const MAX_PLAY = 3;
+  let canPlay = true;
   // Phần tử DOM
   const showMaxPlay = document.getElementById("maxPlay");
+  const showAwardList = document.getElementById("awardList");
   const lixiImage = document.getElementById("lixiImage");
   const notification = document.getElementById("notification");
 
@@ -16,12 +20,21 @@ if (!token) {
       const {
         data: { data: awardList },
       } = await axios.get(`${API_URL}/awards-list`);
-      console.log(awardList);
 
+      showAwardList.innerHTML = `
+        ${awardList
+          .map((item) => `<li>${item.luckyMoneyId?.message || ""}</li>`)
+          .join("")}
+      `;
       const totalMoney = awardList.reduce((sum, item) => {
         return sum + item.luckyMoneyId?.value || 0;
       }, 0);
-      showMaxPlay.textContent = `Bạn đã nhận được ${totalMoney} VNĐ`;
+      const numberCanPlay = MAX_PLAY - awardList.length;
+      if (numberCanPlay == 0) canPlay = false;
+      showMaxPlay.textContent =
+        numberCanPlay !== 0
+          ? `Bạn còn ${numberCanPlay} lượt chơi`
+          : `Bạn đã nhận được ${formatCurrency(totalMoney)}`;
     } catch (error) {
       console.log(error);
     }
@@ -29,6 +42,7 @@ if (!token) {
   getLixi();
   // Hàm hiển thị lì xì ngẫu nhiên
   async function showLixi() {
+    if (!canPlay) return alert("Bạn đã hết lượt chơi");
     try {
       const { data } = await axios.post(`${API_URL}/genawards`);
       const message = data?.message || "Chúc mừng năm mới";
@@ -78,6 +92,8 @@ if (!token) {
 async function resetLixi() {
   try {
     await axios.get(`${API_URL}/awards-delete`);
+    alert("Reset ok");
+    location.replace("/");
   } catch (error) {
     console.log(error);
   }

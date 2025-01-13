@@ -17,6 +17,14 @@ h2 {
   font-size: 1.5rem;
 }
 
+li {
+  list-style: none;
+  color: #e63946;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
 p {
   font-size: 1.2rem;
   font-weight: 500;
