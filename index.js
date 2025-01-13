@@ -5,7 +5,7 @@ if (!token) {
   location.replace("/login.html");
 } else {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
+  let maxPlay = 3;
   // Phần tử DOM
   const showMaxPlay = document.getElementById("maxPlay");
   const lixiImage = document.getElementById("lixiImage");
@@ -16,6 +16,8 @@ if (!token) {
       const {
         data: { data: awardList },
       } = await axios.get(`${API_URL}/awards-list`);
+      console.log(awardList);
+
       const totalMoney = awardList.reduce((sum, item) => {
         return sum + item.luckyMoneyId?.value || 0;
       }, 0);

@@ -27,12 +27,15 @@
   </head>
   <body>
     <div
-      class="d-flex justify-content-center align-items-center"
+      class="container d-flex justify-content-center align-items-center"
       style="height: 100vh"
     >
-      <div style="border: 3px solid #0d6efd" class="rounded p-5">
+      <div
+        class="col-12 col-md-8 col-lg-6"
+        style="border: 3px solid #0d6efd; border-radius: 8px; padding: 20px"
+      >
         <h2 class="text-center" style="color: #0d6efd">Đăng nhập</h2>
-        <form id="formLogin" style="width: 800px">
+        <form id="formLogin">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" />
