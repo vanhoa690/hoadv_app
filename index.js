@@ -21,6 +21,57 @@ const lixiList = [
 
 let maxPlay = 0;
 
+// Kiểm tra nếu thiết bị hỗ trợ DeviceMotionEvent
+function initShakeEvent() {
+  if (
+    typeof DeviceMotionEvent !== "undefined" &&
+    typeof DeviceMotionEvent.requestPermission === "function"
+  ) {
+    // iOS yêu cầu quyền truy cập
+    DeviceMotionEvent.requestPermission()
+      .then((permissionState) => {
+        if (permissionState === "granted") {
+          startShakeDetection();
+        } else {
+          alert(
+            "Bạn cần cấp quyền truy cập chuyển động để sử dụng tính năng lắc lì xì."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Lỗi khi yêu cầu quyền truy cập chuyển động:", error);
+      });
+  } else if (typeof DeviceMotionEvent !== "undefined") {
+    // Trường hợp không phải iOS, bắt đầu lắng nghe ngay lập tức
+    startShakeDetection();
+  } else {
+    alert("Thiết bị của bạn không hỗ trợ tính năng lắc.");
+  }
+}
+
+// Khởi tạo thư viện shake.js
+function startShakeDetection() {
+  const shakeEvent = new Shake({
+    threshold: 15, // Độ nhạy của lắc
+    timeout: 1000, // Thời gian giữa các lần lắc
+  });
+
+  shakeEvent.start();
+
+  window.addEventListener(
+    "shake",
+    function () {
+      showLixi(); // Hàm hiển thị lì xì
+    },
+    false
+  );
+
+  // Đảm bảo dừng lắng nghe khi không cần thiết
+  window.addEventListener("beforeunload", function () {
+    shakeEvent.stop();
+  });
+}
+
 // Hàm xáo trộn mảng sử dụng thuật toán Fisher-Yates Shuffle
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
