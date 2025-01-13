@@ -51,13 +51,43 @@ function initShakeEvent() {
 
 // Khởi tạo thư viện shake.js
 function startShakeDetection() {
+  // Thêm sự kiện click vào bao lì xì
+  lixiImage.addEventListener("click", showLixi);
+
   const shakeEvent = new Shake({
     threshold: 15, // Độ nhạy của lắc
     timeout: 1000, // Thời gian giữa các lần lắc
   });
 
   shakeEvent.start();
+  // Hàm hiển thị lì xì ngẫu nhiên
+  function showLixi() {
+    const money = localStorage.getItem("lixi") || 0;
+    if (maxPlay <= 0) {
+      showMaxPlay.textContent = `Bạn nhận được ${money}k VND`;
+      alert("Bạn đã hết lượt chơi");
+      return;
+    } else {
+      maxPlay = maxPlay - 1;
+      showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi và nhận được ${money}k VND`;
+    }
+    const lixi = getRandomLixi();
 
+    const totalLixi = Number(money) + lixi.value;
+    showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi và nhận được ${totalLixi}k VND`;
+    localStorage.setItem("lixi", totalLixi);
+    // Hiển thị thông báo
+    notification.textContent = `🎉 ${lixi.message}`;
+    notification.classList.add("show");
+    // Ẩn thông báo sau 3 giây
+    setTimeout(() => {
+      notification.classList.remove("show");
+    }, 2000);
+
+    // Thêm hiệu ứng rung
+    lixiImage.classList.add("shake");
+    setTimeout(() => lixiImage.classList.remove("shake"), 1000);
+  }
   window.addEventListener(
     "shake",
     function () {
@@ -114,35 +144,6 @@ const notification = document.getElementById("notification");
 
 showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi`;
 
-// Hàm hiển thị lì xì ngẫu nhiên
-function showLixi() {
-  const money = localStorage.getItem("lixi") || 0;
-  if (maxPlay <= 0) {
-    showMaxPlay.textContent = `Bạn nhận được ${money}k VND`;
-    alert("Bạn đã hết lượt chơi");
-    return;
-  } else {
-    maxPlay = maxPlay - 1;
-    showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi và nhận được ${money}k VND`;
-  }
-  const lixi = getRandomLixi();
-
-  const totalLixi = Number(money) + lixi.value;
-  showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi và nhận được ${totalLixi}k VND`;
-  localStorage.setItem("lixi", totalLixi);
-  // Hiển thị thông báo
-  notification.textContent = `🎉 ${lixi.message}`;
-  notification.classList.add("show");
-  // Ẩn thông báo sau 3 giây
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 2000);
-
-  // Thêm hiệu ứng rung
-  lixiImage.classList.add("shake");
-  setTimeout(() => lixiImage.classList.remove("shake"), 1000);
-}
-
 // Hàm reset lì xì
 function resetLixi() {
   localStorage.setItem("lixi", 0);
@@ -150,30 +151,27 @@ function resetLixi() {
   showMaxPlay.textContent = `Bạn còn ${maxPlay} lượt chơi`;
 }
 
-// Thêm sự kiện click vào bao lì xì
-lixiImage.addEventListener("click", showLixi);
+// // Khởi tạo Shake.js
+// const shakeEvent = new Shake({
+//   threshold: 15, // Độ nhạy của lắc
+//   timeout: 1000, // Thời gian giữa các lần lắc
+// });
 
-// Khởi tạo Shake.js
-const shakeEvent = new Shake({
-  threshold: 15, // Độ nhạy của lắc
-  timeout: 1000, // Thời gian giữa các lần lắc
-});
+// // Lắng nghe sự kiện lắc
+// shakeEvent.start();
 
-// Lắng nghe sự kiện lắc
-shakeEvent.start();
+// window.addEventListener(
+//   "shake",
+//   function () {
+//     showLixi();
+//   },
+//   false
+// );
 
-window.addEventListener(
-  "shake",
-  function () {
-    showLixi();
-  },
-  false
-);
-
-// Đảm bảo dừng lắng nghe khi không cần thiết
-window.addEventListener("beforeunload", function () {
-  shakeEvent.stop();
-});
+// // Đảm bảo dừng lắng nghe khi không cần thiết
+// window.addEventListener("beforeunload", function () {
+//   shakeEvent.stop();
+// });
 
 initShakeEvent();
 // Gọi hàm yêu cầu quyền khi người dùng bắt đầu tương tác
