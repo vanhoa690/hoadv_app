@@ -177,4 +177,4 @@ window.addEventListener("beforeunload", function () {
 
 initShakeEvent();
 // Gọi hàm yêu cầu quyền khi người dùng bắt đầu tương tác
-document.getElementById("lixiImage").addEventListener("click", initShakeEvent);
+// document.getElementById("lixiImage").addEventListener("click", initShakeEvent);
